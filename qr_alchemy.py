@@ -43,7 +43,7 @@ class QR_maker():
                                    back_color = "white") #back_color=(255,195,235)
         draw = ImageDraw.Draw(image_file)
 
-        border_width = 4
+        border_width = 0
         #custom styling added below
         draw.rectangle(xy=[(0,0),
                            (image_file.size[0] - 1, image_file.size[1] - 1)],
@@ -59,7 +59,7 @@ class QR_maker():
 if __name__ == "__main__":
     #store arguments after the script filename / index pos 0 from the CL
     if len(sys.argv) <3:
-        print("Provide the URL and file name as CL arguments")
+        print("Provide the URL and file name as CL arguments, e.g. google.com, google_qr")
         sys.exit(1)
 
     qrMachine = QR_maker()

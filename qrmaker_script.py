@@ -46,25 +46,25 @@ class QrMaker:
             error_correction = constants.ERROR_CORRECT_L,
             box_size = self.size,
             border = self.border
-        )
+            )
         qr.add_data(url)
         qr.make(fit=True)
-        
         image_file = qr.make_image(fill_color = "black",
                                    back_color = "white") #back_color=(255,195,235)
+        
+        # Creating a draw object to modify the existing QR image.
         draw = ImageDraw.Draw(image_file)
-        #custom styling added below
         draw.rectangle(xy=[(0,0),
                            (image_file.size[0] - 1, image_file.size[1] - 1)],
                            outline = 'black',
                            width=border_width)
- 
-        #save the file
+
+        #Save file as a PNG
         os.makedirs(self.folder_path, exist_ok=True)
         image_path = f"{self.folder_path}/{file}.png"
         image_file.save(image_path)
 
-    def qr_save_byte(self, url:str) -> str:
+    def qr_save_byte(self, url:str) -> bytes:
         """
         Generate a QR code saved as bytes to be returned. This will be used by the streamlit UI upon deploy.
 

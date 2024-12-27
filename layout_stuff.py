@@ -6,26 +6,9 @@ TO DO:
 
 #SAMPLE CODE
 import streamlit as st
-import io
-from PIL import Image
-import numpy as np
+from qrmaker_script import QrMaker
 
-# Create a bytes buffer for the image
-img_buffer = io.BytesIO()
+qr_instance = QrMaker.qr_save_local
 
-# Example: Create a simple image using PIL or numpy
-# (Replace this with your actual image data)
-img_array = np.random.randint(0, 255, (100, 100, 3), dtype=np.uint8)
-img = Image.fromarray(img_array)
-
-# Save the image to the buffer
-img.save(img_buffer, format='PNG')
-img_bytes = img_buffer.getvalue()
-
-# Display the image directly from bytes
-st.image(img_bytes)
-
-
-# # If you already have image bytes
-# image_bytes = your_image_bytes  # Your bytes data here
-# st.image(image_bytes)
+image_bytes = your_image_bytes  # Your bytes data here
+st.image(image_bytes)

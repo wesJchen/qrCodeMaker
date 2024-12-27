@@ -64,36 +64,34 @@ class QrMaker:
         image_path = f"{self.folder_path}/{file}.png"
         image_file.save(image_path)
 
-def qr_save_byte(self, url:str) -> str:
-    """
-    Generate a QR code saved as bytes to be returned. This will be used by the streamlit UI upon deploy.
+    def qr_save_byte(self, url:str) -> str:
+        """
+        Generate a QR code saved as bytes to be returned. This will be used by the streamlit UI upon deploy.
 
-    :param url: str of the QR code to be generated
-    :return: Return the bytes of the PNG file
-    """
-    ### ARRANGE ###
-    img_buffer = io.BytesIO()
+        :param url: str of the QR code to be generated
+        :return: Return the bytes of the PNG file
+        """
+        ### ARRANGE ###
+        img_buffer = io.BytesIO()
 
-    ### ACT ###
-    img = qrcode.QRCode(
-            version=1,
-            error_correction = constants.ERROR_CORRECT_L,
-            box_size = self.size,
-            border = self.border
-        )
-    img.add_data(url)
-    img.make(fit=True)
-    
-    image_file = img.make_image(fill_color = "black",
-                                back_color = "white") #back_color=(255,195,235)
-    draw = ImageDraw.Draw(image_file)
-    border_width = 0
+        ### ACT ###
+        img = qrcode.QRCode(
+                version=1,
+                error_correction = constants.ERROR_CORRECT_L,
+                box_size = self.size,
+                border = self.border
+            )
+        img.add_data(url)
+        img.make(fit=True)
+        
+        image_file = img.make_image(fill_color = "black",
+                                    back_color = "white") #back_color=(255,195,235)
 
-    # Save the image to the buffer
-    img.save(img_buffer, format='PNG')
-    img_bytes = img_buffer.getvalue()
+        # Save the image to the buffer
+        image_file.save(img_buffer, format='PNG')
+        img_bytes = img_buffer.getvalue()
 
-    return img_bytes
+        return img_bytes
 
 if __name__ == "__main__":
     #store arguments after the script filename / index pos 0 from the CL
@@ -101,8 +99,8 @@ if __name__ == "__main__":
         print("Provide the URL and file name as CL arguments, e.g. google.com, google_qr")
         sys.exit(1)
 
-    qrMachine = QR_maker()
+    qr_machine = QrMaker()
     url = sys.argv[1]
     file = sys.argv[2]
-    qrMachine.qr_save(url, file)
+    qr_machine.qr_save_local(url=url, file=file)
     print(f"File image for website '{url}': CREATED as '{file}.png'")

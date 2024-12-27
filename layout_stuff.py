@@ -3,12 +3,11 @@ TO DO:
 * Implement a bytes buffer for the image to be stored as
 
 """
-
-#SAMPLE CODE
 import streamlit as st
 from qrmaker_script import QrMaker
 
-qr_instance = QrMaker.qr_save_local
+qr_instance = QrMaker()
+img_bytes = qr_instance.qr_save_byte("www.target.com")
 
-image_bytes = your_image_bytes  # Your bytes data here
-st.image(image_bytes)
+#Input the bytes of the QR image generated
+st.image(img_bytes)

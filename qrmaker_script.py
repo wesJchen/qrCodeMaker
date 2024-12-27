@@ -1,24 +1,10 @@
-""" 
-# QR code project
-
-# AC:
-    # verify the website link provided is valid
-    # verify the qr code capture directs to the site provided url
-    # verify the qr code is a clear format and not blurry upon file save
-    # verify save and exporting qr code as png file
-
-# nice to haves:
-    #designs to implement along the qr code image graphic
-    #analytic for qr code captures and tracking e.g. GA
-
-ref: https://pypi.org/project/qrcode/
-"""
-
+import io
 import qrcode
 import sys, os
 from qrcode import constants
-from PIL import Image, ImageDraw
-import io
+from PIL import ImageDraw
+
+from modules.enums import ImgFileExt
 
 #contains the qr library to create qr code as PNG
 class QrMaker:
@@ -61,7 +47,7 @@ class QrMaker:
 
         #Save file as a PNG
         os.makedirs(self.folder_path, exist_ok=True)
-        image_path = f"{self.folder_path}/{file}.png"
+        image_path = f"{self.folder_path}/{file}.{ImgFileExt.PNG.value}"
         image_file.save(image_path)
 
     def qr_save_byte(self, url:str) -> bytes:
@@ -88,7 +74,7 @@ class QrMaker:
                                     back_color = "white") #back_color=(255,195,235)
 
         # Save the image to the buffer
-        image_file.save(img_buffer, format='PNG')
+        image_file.save(img_buffer, format={ImgFileExt.PNG.value})
         img_bytes = img_buffer.getvalue()
 
         return img_bytes

@@ -74,7 +74,7 @@ class QrMaker:
                                     back_color = "white") #back_color=(255,195,235)
 
         # Save the image to the buffer
-        image_file.save(img_buffer, format={ImgFileExt.PNG.value})
+        image_file.save(img_buffer, format=ImgFileExt.PNG.value)
         img_bytes = img_buffer.getvalue()
 
         return img_bytes

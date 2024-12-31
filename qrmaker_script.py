@@ -12,7 +12,7 @@ class QrMaker:
     def __init__(self):
         self.size = 10
         self.border = 2
-        self.folder_path = "qr_images"
+        self.folder_path = "output"
 
     def qr_save_local(self, url:str, file:str) -> None:
         """

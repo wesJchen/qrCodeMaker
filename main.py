@@ -17,17 +17,37 @@ static_test_image = Image.open(img_name)
 # #Load the CSS Styles
 # StyleHelper.load_css("styles.css") #nevermind :<
 
+st.markdown(
+    """
+    <style>
+    .container-class {
+        background-color: #6a0dad ;
+        padding: 20px;
+        border-radius: 10px;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+
+
+
 # Create columns for streamlit to use.
 
 
-# Stick the image into the container 
+# Generate containers to separate different areas of the app 
+header_container = st.container()
 container = st.container(border = True)
+
+with header_container:
+    st.markdown('<div class="container-class">QR Image Maker</div>', unsafe_allow_html=True)
+    StyleHelper.line_break(1)
 
 with container:
 
-    st.write(f"QR Image")
-    StyleHelper.line_break(5)
 
+    StyleHelper.line_break(5)
     # Format multiple columns on the sheet
     col1, col2, col3 = st.columns(3)
     with col1:

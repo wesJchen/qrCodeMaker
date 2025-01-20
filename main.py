@@ -13,7 +13,7 @@ img_name = "output/wesley_linkedin_qr.png"
 static_test_image = Image.open(img_name)
 
 title_image = Image.open("assets/titleimage.png")
-warning_image = Image.open("assets/warningsign.png")
+warning_image = Image.open("assets/yeahnosign.png")
 
 ### STYLES SETUP ###
 
